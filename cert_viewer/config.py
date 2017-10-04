@@ -1,5 +1,4 @@
 import os
-
 import configargparse
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -42,7 +41,6 @@ parsed_config = None
 
 
 def get_config():
-    print "getting config"
     global parsed_config
     parsed_config = create_config()
     return parsed_config

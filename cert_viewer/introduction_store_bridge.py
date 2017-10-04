@@ -7,5 +7,6 @@ class IntroStore(object):
 
 
 def insert_introduction(introduction):
+    print "inserting introduction"
     from cert_viewer import intro_store
     intro_store.insert(introduction)
