@@ -9,7 +9,9 @@ def main():
     conf = get_config()
     configure_app(conf)
     from cert_viewer import app
-    app.run('0.0.0.0', port=port)
+    
+    ## DEBUG IS NOW ON
+    app.run('0.0.0.0', port=port, debug=True)
 
 
 if __name__ == "__main__":

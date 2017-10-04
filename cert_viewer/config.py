@@ -6,9 +6,9 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 
 def create_config():
-    p = configargparse.getArgumentParser(default_config_files=[os.path.join(BASE_DIR, 'conf_local.ini'),
-                                                               os.path.join(BASE_DIR, 'conf.ini'),
-                                                               '/etc/cert-issuer/conf.ini'])
+    p = configargparse.getArgumentParser(
+        default_config_files=[os.path.join(BASE_DIR, 'conf_local.ini'),      os.path.join(BASE_DIR, 'conf.ini'),'/etc/cert-issuer/conf.ini'])
+
     p.add('-c', '--my-config', required=False, is_config_file=True, help='config file path')
     p.add_argument('--notifier_type', default='noop', type=str, env_var='NOTIFIER_TYPE',
                    help='type of notification on certificate introduction')
@@ -42,8 +42,7 @@ parsed_config = None
 
 
 def get_config():
+    print "getting config"
     global parsed_config
-    if parsed_config:
-        return parsed_config
     parsed_config = create_config()
     return parsed_config

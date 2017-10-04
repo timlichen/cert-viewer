@@ -7,6 +7,18 @@ from cert_viewer import helpers
 def certificate_to_award(displayable_certificate):
     chain = parse_chain_from_address(displayable_certificate.recipient_public_key)
     tx_url = helpers.get_tx_lookup_prefix_for_chain(chain)
+    
+    print "*"*20
+    print dir(displayable_certificate)
+    for key in displayable_certificate.certificate_json:
+        print key
+
+    print displayable_certificate.certificate_json['Python']
+    print displayable_certificate.certificate_json['MEAN']
+
+    # print displayable_certificate.Python
+    print "*"*20
+    
 
     award = {
         'logoImg': displayable_certificate.issuer.image,
@@ -17,7 +29,10 @@ def certificate_to_award(displayable_certificate):
         'issuerID': displayable_certificate.issuer.id,
         'transactionID': displayable_certificate.txid,
         'transactionIDURL': os.path.join(tx_url, displayable_certificate.txid),
-        'issuedOn': displayable_certificate.issued_on.strftime('%Y-%m-%d')
+        'issuedOn': displayable_certificate.issued_on.strftime('%Y-%m-%d'),
+
+        'Python': displayable_certificate.certificate_json['Python'],
+        'MEAN': displayable_certificate.certificate_json['MEAN']
     }
     if displayable_certificate.signature_image:
         # TODO: format images and titles for all signers

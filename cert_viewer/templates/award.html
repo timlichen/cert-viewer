@@ -24,6 +24,8 @@
 
         <div class="certificate-description">
             <p>{{ award.text }}</p>
+            <p>Python: {{ award.Python }}</p>
+            <p>MEAN: {{ award.MEAN }}</p>
         </div>
 
         {% if award.signatureImg %}
@@ -56,7 +58,6 @@
         <strong>Blockchain Address:</strong> <span class="address"><a
             href="{{ award.transactionIDURL }}">{{ award.transactionIDURL }}</a> </span>
     </div>
-
 {% endblock %}
 
 
