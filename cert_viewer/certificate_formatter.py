@@ -41,17 +41,16 @@ def certificate_to_award(displayable_certificate):
     chain = get_chain(displayable_certificate)
     tx_url = helpers.get_tx_lookup_chain(chain, displayable_certificate.txid)
     
-    print "*"*20
-    print dir(displayable_certificate)
-    for key in displayable_certificate.certificate_json:
-        print key
-
-    print displayable_certificate.certificate_json['Python']
-    print displayable_certificate.certificate_json['MEAN']
-
-    # print displayable_certificate.Python
-    print "*"*20
-    
+    belts_earned = {
+        "Web Fundamentals": displayable_certificate.certificate_json['WebFun'],
+        "Python": displayable_certificate.certificate_json['Python'],
+        "MEAN": displayable_certificate.certificate_json['MEAN'],
+        "Java Spring": displayable_certificate.certificate_json['Java'],
+        "iOS": displayable_certificate.certificate_json['iOS'],
+        "Ruby on Rails": displayable_certificate.certificate_json['RoR'],
+        "LAMP": displayable_certificate.certificate_json['LAMP'],
+        "C#": displayable_certificate.certificate_json['C_SHARP'],
+    }
 
     award = {
         'logoImg': displayable_certificate.issuer.image,
@@ -62,8 +61,13 @@ def certificate_to_award(displayable_certificate):
         'issuerID': displayable_certificate.issuer.id,
         'transactionID': displayable_certificate.txid,
         'transactionIDURL': tx_url,
-        'issuedOn': displayable_certificate.issued_on.strftime('%Y-%m-%d')
+        'issuedOn': displayable_certificate.issued_on.strftime('%Y-%m-%d'),
+        'belt_levels': belts_earned
     }
+
+    if displayable_certificate.certificate_json['WebFun']:
+        award['WebFun'] = displayable_certificate.certificate_json['WebFun']
+    
     if displayable_certificate.signature_image:
         # TODO: format images and titles for all signers
         award['signatureImg'] = displayable_certificate.signature_image[0].image

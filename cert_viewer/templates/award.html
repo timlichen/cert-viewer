@@ -24,13 +24,23 @@
 
         <div class="certificate-description">
             <p>{{ award.text }}</p>
-            <p>Python: {{ award.Python }}</p>
-            <p>MEAN: {{ award.MEAN }}</p>
+            
+            <p>
+                {% for type, level in award.belt_levels.items()%}
+                    {% if level %}
+                        <p>{{type}} : {{level}}</p>
+                    {% endif %}
+                {% endfor %}
+            </p>
+    
+
         </div>
 
         {% if award.signatureImg %}
             <div class="certificate-signature">
                 <img src="{{ award.signatureImg }}" id="signature-img" alt="Signature"/>
+                <p>Michael Choi</p>
+                <p>Coding Dojo Founder</p>
             </div>
         {% endif %}
 

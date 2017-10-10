@@ -39,7 +39,7 @@ def update_recent_certs():
     for file in listdir(mypath):
         if file[len(file) - 4:] == "json":
             certs_folder.append(file[:len(file) - 5])
-    
+    print certs_folder
     return certs_folder
 
 def render(template, **context):
